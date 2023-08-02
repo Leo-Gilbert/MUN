@@ -1,0 +1,42 @@
+FindEulerCircuit(graph):
+    // Check if the graph is connected
+    if not isConnected(graph):
+        return "No Euler circuit exists. The graph is not connected."
+
+    // Check if all vertices have even degree
+    if not hasEvenDegrees(graph):
+        return "No Euler circuit exists. Not all vertices have even degree."
+
+    // Initialize an empty list to store the Euler circuit
+    circuit = Empty List
+
+    // Initialize a stack to keep track of the current path
+    stack = Empty Stack
+
+    // Select a starting vertex (you can start from any vertex)
+    startVertex = selectStartVertex(graph)
+
+    // Push the starting vertex to the stack
+    stack.push(startVertex)
+
+    // While the stack is not empty
+    while stack is not empty:
+        currentVertex = stack.top()
+        
+        // If the current vertex has no unvisited neighbors, add it to the circuit
+        if no unvisited neighbors for currentVertex:
+            circuit.append(currentVertex)
+            stack.pop()
+        else:
+            // Otherwise, choose an unvisited neighbor and visit it
+            nextVertex = selectNextVertex(currentVertex)
+            stack.push(nextVertex)
+            removeEdge(currentVertex, nextVertex)
+
+    // Reverse the circuit to get the Euler circuit
+    reverse(circuit)
+
+    // Return the Euler circuit
+    return circuit
+
+

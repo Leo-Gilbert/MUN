@@ -1,0 +1,24 @@
+TopologicalSort(graph):
+    // Initialize an empty stack to store the topological ordering
+    stack = Empty Stack
+
+    // Initialize a boolean array to keep track of visited vertices
+    visited = Array of size |V| // |V| is the number of vertices
+    for each vertex in graph:
+        visited[vertex] = false
+
+    // Function to perform DFS and add vertices to the stack
+    function DFS(current):
+        visited[current] = true
+        for each neighbor in graph[current]:
+            if not visited[neighbor]:
+                DFS(neighbor)
+        stack.push(current)
+
+    // Perform DFS starting from each unvisited vertex
+    for each vertex in graph:
+        if not visited[vertex]:
+            DFS(vertex)
+
+    // The stack now contains the topological ordering
+    return stack
